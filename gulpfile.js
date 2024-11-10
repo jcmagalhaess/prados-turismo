@@ -6,13 +6,16 @@ const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
+const shell = require('gulp-shell');
 
 // Caminhos dos arquivos
 const paths = {
-  scss: './src/scss/**/*.scss', // Diretório dos arquivos SCSS
-  css: './dist/css', // Diretório de saída dos arquivos CSS
-  js: './src/js/**/*.js', // Diretório dos arquivos JavaScript
-  jsDist: './dist/js' // Diretório de saída dos arquivos JS minificados
+  scss: './src/scss/**/*.scss',         // Diretório dos arquivos SCSS
+  css: './public/assets/css',           // Diretório de saída dos arquivos CSS compilados
+  js: './src/js/**/*.js',               // Diretório dos arquivos JavaScript
+  jsDist: './public/assets/js',         // Diretório de saída dos arquivos JS minificados
+  html: './public/**/*.html',           // Arquivos HTML dentro de `public`
+  php: './public/**/*.php'              // Arquivos PHP dentro de `public`
 };
 
 // Task: Compilar SCSS para CSS com Sourcemaps e Minificação
@@ -38,19 +41,23 @@ gulp.task('minify-js', function () {
     .pipe(browserSync.stream()); // Atualiza o navegador
 });
 
+// Task: Iniciar o servidor PHP
+gulp.task('php-server', shell.task([
+  'php -S localhost:8000 -t public'
+]));
+
 // Task: Iniciar o BrowserSync e observar mudanças
-gulp.task('serve', function () {
+gulp.task('serve', gulp.series('php-server', function () {
   browserSync.init({
-    server: {
-      baseDir: './' // Define o diretório raiz do servidor
-    }
+    proxy: 'localhost:8000', // Proxy para o servidor PHP
+    baseDir: './public'
   });
 
-  // Observa mudanças nos arquivos SCSS, JS e HTML
+  // Observa mudanças nos arquivos SCSS, JS, HTML e PHP
   gulp.watch(paths.scss, gulp.series('scss'));
   gulp.watch(paths.js, gulp.series('minify-js'));
-  gulp.watch('./*.html').on('change', browserSync.reload);
-});
+  gulp.watch([paths.html, paths.php]).on('change', browserSync.reload);
+}));
 
 // Task padrão
 gulp.task('default', gulp.series('scss', 'minify-js', 'serve'));
