@@ -42,11 +42,8 @@
                             <img src="/assets/images/logo.webp" alt="Logo - Prados Turismo">
                         </figure>
                         <ul class="header__list">
-                            <li class="header__item">
+                            <li class="header__item header__item--activated">
                                 <a href="#">Home</a>
-                            </li>
-                            <li class="header__item">
-                                <a href="#">Pacotes</a>
                             </li>
                             <li class="header__item">
                                 <a href="#">Pacotes</a>
