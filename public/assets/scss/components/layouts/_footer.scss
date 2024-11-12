@@ -63,6 +63,10 @@ $component-name: "footer";
         border-radius: 50%;
         cursor: pointer;
         color: var(--color-light);
+        transition: .5s ease;
+        &:hover {
+            background-color: scale-color(#ffffff, $alpha: -80%);
+        }
     }
 
     &__copyright {
