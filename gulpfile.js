@@ -6,7 +6,7 @@ const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
-const shell = require('gulp-shell');
+const { spawn } = require('child_process');
 
 // Caminhos dos arquivos
 const paths = {
@@ -14,8 +14,8 @@ const paths = {
   css: './public/dist/css',                   // Diretório de saída dos arquivos CSS compilados
   js: './public/assets/js/**/*.js',           // Diretório dos arquivos JavaScript
   jsDist: './public/dist/js',                 // Diretório de saída dos arquivos JS minificados
-  layout: './public/views/layouts/*.php',             // Todos os arquivos PHP dentro de `views`
-  pages: './public/views/pages/*.php'              // Todos os arquivos PHP dentro de `views`
+  layouts: './public/views/layouts/*.php',    // Todos os arquivos PHP dentro de `views`
+  pages: './public/views/pages/*.php'         // Todos os arquivos PHP dentro de `views`
 };
 
 // Task: Compilar SCSS para CSS com Sourcemaps e Minificação
@@ -42,9 +42,24 @@ gulp.task('minify-js', function () {
 });
 
 // Task: Iniciar o servidor PHP
-gulp.task('php-server', shell.task([
-  'php -S localhost:8000 -t public'
-]));
+gulp.task('php-server', function (done) {
+  const phpServer = spawn('php', ['-S', 'localhost:8000', '-t', 'public']);
+  
+  phpServer.stdout.on('data', (data) => {
+    console.log(`Servidor PHP: ${data}`);
+  });
+  
+  phpServer.stderr.on('data', (data) => {
+    console.error(`Erro no Servidor PHP: ${data}`);
+  });
+  
+  phpServer.on('close', (code) => {
+    console.log(`Servidor PHP encerrado com código: ${code}`);
+    done();
+  });
+
+  done();
+});
 
 // Task: Iniciar o BrowserSync e observar mudanças
 gulp.task('serve', gulp.series('php-server', function () {
@@ -52,12 +67,13 @@ gulp.task('serve', gulp.series('php-server', function () {
 
   browserSync.init({
     proxy: 'localhost:8000', // Proxy para o servidor PHP
+    open: false // Mudar para 'true' se quiser abrir o navegador automaticamente
   });
 
   // Observa mudanças nos arquivos SCSS, JS, HTML e PHP
   gulp.watch(paths.scss, gulp.series('scss'));
   gulp.watch(paths.js, gulp.series('minify-js'));
-  gulp.watch([paths.layout, paths.pages]).on('change', browserSync.reload);
+  gulp.watch([paths.layouts, paths.pages]).on('change', browserSync.reload); // Remove o uso de `done`
 }));
 
 // Task padrão
