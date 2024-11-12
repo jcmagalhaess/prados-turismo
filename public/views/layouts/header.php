@@ -43,10 +43,10 @@
                         </figure>
                         <ul class="header__list">
                             <li class="header__item header__item--activated">
-                                <a href="#">Home</a>
+                                <a href="/">Home</a>
                             </li>
                             <li class="header__item">
-                                <a href="#">Pacotes</a>
+                                <a href="/">Pacotes</a>
                             </li>
                         </ul>
                     </div>

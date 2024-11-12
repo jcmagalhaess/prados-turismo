@@ -30,7 +30,7 @@
     }
 
     &__icon {
-        background-color: scale-color(#ffffff, $alpha: -80%);
+        background-color: rgba($color: #f5f5f5, $alpha: 0.23);
         width: 30px;
         height: 30px;
         display: flex;
