@@ -3,7 +3,8 @@ $component-name: 'card-event';
 .#{$component-name} {
     border: 1px solid #ccc;
     border-radius: 10px;
-    width: calc(100% / 3);
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: 413px;
     overflow: hidden;
 
     &__content {
@@ -23,14 +24,18 @@ $component-name: 'card-event';
         overflow: hidden;
         justify-content: center;
         position: relative;
+        transition: .3s ease;
         &:hover {
             &::before {
                 content: '';
-                transition: .3s ease;
                 width: 100%;
                 height: 100%;
                 background-color: rgba($color: #000000, $alpha: .4);
                 position: absolute;
+            }
+            .#{$component-name}__date {
+                color: var(--color-secondary);
+                background-color: var(--color-light);
             }
         }
     }
@@ -57,10 +62,21 @@ $component-name: 'card-event';
         padding: 10px;
         background: none;
         border: none;
-        transition: .5s ease;
+        transition: .3s ease;
         &:hover {
             background-color: var(--color-secondary);
             color: var(--color-light);
         }
+    }
+    
+    &__date {
+        position: absolute;
+        bottom: 10px;
+        background-color: var(--color-secondary);
+        padding: 10px 15px;
+        border-radius: 5px;
+        left: 10px;
+        color: var(--color-light);
+        transition: .3s ease;
     }
 }
