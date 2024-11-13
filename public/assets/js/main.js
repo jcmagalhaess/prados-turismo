@@ -37,7 +37,7 @@ export async function findExcursion(id) {
   return data
 }
 
-export async function findAllExcursion() {
+export async function findAllExcursions() {
 
   const { data } = await axios.get(`${urlApi}/excursao/findAll`, {
     headers: {
