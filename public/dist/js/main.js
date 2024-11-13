@@ -1,12 +1,12 @@
-// const urlApi = '__URL_API__';
+// const urlApi = 'http://localhost:8000';
 const urlApi = 'http://localhost:8000';
 
 export async function auth() {
 
   const { data } = await axios.post(`${urlApi}/usuarios/auth`,
     {
-      // username: '__DEFAULT_USER__',
-      // password: '__DEFAULT_PASSWORD__'
+      // username: 'PradosAdmin',
+      // password: '1234'
       username: 'PradosAdmin',
       password: '1234'
     }

@@ -47,3 +47,8 @@
         </div>
     </section>
 </main>
+
+<script type="module" src="dist/js/main.min.js"></script>
+
+<script type="module">
+</script>

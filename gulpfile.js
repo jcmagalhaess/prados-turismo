@@ -7,6 +7,8 @@ const rename = require('gulp-rename');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
 const { spawn } = require('child_process');
+const replace = require('gulp-replace');
+require('dotenv').config();
 
 // Caminhos dos arquivos
 const paths = {
@@ -30,6 +32,14 @@ gulp.task('scss', function () {
     .pipe(browserSync.stream()); // Atualiza o navegador
 });
 
+gulp.task('inject-env', function () {
+  return gulp.src(paths.js)
+    .pipe(replace('__URL_API__', process.env.URL_API))
+    .pipe(replace('__DEFAULT_USER__', process.env.DEFAULT_USER))
+    .pipe(replace('__DEFAULT_PASSWORD__', process.env.DEFAULT_PASSWORD))
+    .pipe(gulp.dest(paths.jsDist));
+});
+
 // Task: Minificar arquivos JavaScript
 gulp.task('minify-js', function () {
   return gulp.src(paths.js)
@@ -43,16 +53,16 @@ gulp.task('minify-js', function () {
 
 // Task: Iniciar o servidor PHP
 gulp.task('php-server', function (done) {
-  const phpServer = spawn('php', ['-S', 'localhost:8000', '-t', 'public']);
-  
+  const phpServer = spawn('php', ['-S', 'localhost:5000', '-t', 'public']);
+
   phpServer.stdout.on('data', (data) => {
     console.log(`Servidor PHP: ${data}`);
   });
-  
+
   phpServer.stderr.on('data', (data) => {
     console.error(`Erro no Servidor PHP: ${data}`);
   });
-  
+
   phpServer.on('close', (code) => {
     console.log(`Servidor PHP encerrado com código: ${code}`);
     done();
@@ -66,15 +76,16 @@ gulp.task('serve', gulp.series('php-server', function () {
   console.log("Starting BrowserSync...");
 
   browserSync.init({
-    proxy: 'localhost:8000', // Proxy para o servidor PHP
+    proxy: 'localhost:5000', // Proxy para o servidor PHP
     open: false // Mudar para 'true' se quiser abrir o navegador automaticamente
   });
 
   // Observa mudanças nos arquivos SCSS, JS, HTML e PHP
   gulp.watch(paths.scss, gulp.series('scss'));
-  gulp.watch(paths.js, gulp.series('minify-js'));
+  gulp.watch(paths.js, gulp.series('inject-env', 'minify-js'));
   gulp.watch([paths.layouts, paths.pages]).on('change', browserSync.reload); // Remove o uso de `done`
 }));
 
+
 // Task padrão
-gulp.task('default', gulp.series('scss', 'minify-js', 'serve'));
+gulp.task('default', gulp.series('scss', 'inject-env', 'minify-js', 'serve'));
