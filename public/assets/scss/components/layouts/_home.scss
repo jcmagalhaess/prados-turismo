@@ -46,4 +46,10 @@ $component-name: "home";
             margin-inline-start: 20px;
         }
     }
+
+    &__events {
+        display: flex;
+        flex-flow: wrap;
+        gap: 30px;
+    }
 }

@@ -26,6 +26,24 @@
     <section class="home__pacotes">
         <div class="container">
             <h3 class="home__title">Nossos Pacotes</h3>
+            <div class="home__events">
+                <div class="card-event">
+                    <div class="card-event__content">
+                        <figure class="card-event__thumbnail">
+                            <img src="/assets/images/rj.png" alt="Rio de Janeiro">
+                        </figure>
+                        <span class="card-event__category">Fortaleza</span>
+                        <h2 class="card-event__title">Pacote para Rio de Janeiro e Arraial do Cabo</h2>
+                        <p class="card-event__resume">Conheça um dos destinos mais desejados do mundo inteiro! Neste pacote, você terá suporte 24 horas da nossa equipe, tanto presencial quanto online, transportes confortáveis...</p>
+                    </div>
+                    <div class="card-event__actions">
+                        <span class="card-event__price">R$ 2.990,00</span>
+                        <button class="card-event__cart">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </main>
