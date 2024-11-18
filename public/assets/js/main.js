@@ -50,19 +50,21 @@ export async function findAllExcursions() {
 
 export async function findDestinyByOrigin(origin) {
 
-  const { data } = await axios.get(`${urlApi}/excursao/find-origin/${origin}`, {
+  const { data } = await axios.get(`${urlApi}/excursao/index`, {
     headers: {
       'Authorization': token
+    },
+    params: {
+      origem: origin
     }
   })
-
 
   return data
 }
 
 export async function login() {
 
-  const { data } = await axios.get(`${urlApi}/usuarios/loginClient`)
+  const { data } = await axios.get(`${urlApi}/usuarios/login`)
 
   return data
 }
@@ -89,17 +91,6 @@ export async function findAllPaymentMethods() {
   return data
 }
 
-export async function findAllLocalEmbarque(excursionId) {
-
-  const { data } = await axios.get(`${urlApi}/local-embarque-excursao/find/${excursionId}`, {
-    headers: {
-      'Authorization': token
-    }
-  })
-
-  return data
-}
-
 export async function customerCredit(id) {
 
   const { data } = await axios.get(`${urlApi}/credito-cliente/find/${id}`, {
@@ -112,5 +103,5 @@ export async function customerCredit(id) {
 }
 
 export async function cart(customerId) {
-  
+
 }
