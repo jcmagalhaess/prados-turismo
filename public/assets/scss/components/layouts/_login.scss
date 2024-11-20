@@ -7,8 +7,8 @@ $component-name: 'login';
         border-radius: 3px;
         padding: 30px;
 
-        .input-group {
-            height: 55px;
+        .form-control {
+            height: 55px !important;
         }       
     }
 }
