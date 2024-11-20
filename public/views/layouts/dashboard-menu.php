@@ -17,3 +17,14 @@
         <a href="#">Sair</a>
     </li>
 </ul>
+
+<script>
+    const currentUrl = window.location.pathname.slice(1);
+    const links = document.querySelectorAll('.dashboard__item > a');
+    
+    links.forEach(link => {        
+        if (link.getAttribute('href') === currentUrl) {
+            link.classList.add('dashboard--activated');
+        }
+    });
+</script>
