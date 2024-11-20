@@ -7,5 +7,7 @@ if (file_exists($pageFile)) {
     include $pageFile;
     include "./views/layouts/footer.php";
 } else {
+    include "./views/layouts/header.php";
     include "./views/pages/404.php";
+    include "./views/layouts/footer.php";
 }

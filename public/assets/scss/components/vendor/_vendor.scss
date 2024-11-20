@@ -26,3 +26,7 @@ button {
         background-color: var(--color-secondary-dark) !important;
     }
 }
+
+main:not(main.home) {
+    padding-block: 50px;
+}
