@@ -25,6 +25,7 @@ $component-name: 'card-event';
         justify-content: center;
         position: relative;
         transition: .3s ease;
+        cursor: pointer;
         &:hover {
             &::before {
                 content: '';
@@ -63,6 +64,8 @@ $component-name: 'card-event';
         background: none;
         border: none;
         transition: .3s ease;
+        text-align: center;
+        color: var(--color-secondary);
         &:hover {
             background-color: var(--color-secondary);
             color: var(--color-light);

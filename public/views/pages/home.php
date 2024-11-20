@@ -75,9 +75,9 @@
                         </div>
                         <div class="card-event__actions">
                             <span class="card-event__price"><?php echo $value['preco']; ?></span>
-                            <button class="card-event__cart">
+                            <a href="pacote?id=<?php echo $value['id']; ?>" class="card-event__cart">
                                 <i class="fa-solid fa-basket-shopping"></i>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 <?php endforeach; ?>

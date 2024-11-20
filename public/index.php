@@ -1,5 +1,5 @@
 <?php
-$page = $_GET['page'] ?? 'home';
+$page = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == '/' ? 'home' : parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $pageFile = "./views/pages/{$page}.php";
 
 if (file_exists($pageFile)) {

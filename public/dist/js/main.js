@@ -1,12 +1,12 @@
-// const urlApi = 'http://localhost:8000';
+// const urlApi = ',';
 const urlApi = 'http://localhost:8000';
 
 export async function auth() {
 
   const { data } = await axios.post(`${urlApi}/usuarios/auth`,
     {
-      // username: 'PradosAdmin',
-      // password: '1234'
+      // username: ',',
+      // password: ','
       username: 'PradosAdmin',
       password: '1234'
     }
@@ -37,7 +37,7 @@ export async function findExcursion(id) {
   return data
 }
 
-export async function findAllExcursion() {
+export async function findAllExcursions() {
 
   const { data } = await axios.get(`${urlApi}/excursao/findAll`, {
     headers: {
@@ -50,19 +50,21 @@ export async function findAllExcursion() {
 
 export async function findDestinyByOrigin(origin) {
 
-  const { data } = await axios.get(`${urlApi}/excursao/find-origin/${origin}`, {
+  const { data } = await axios.get(`${urlApi}/excursao/index`, {
     headers: {
       'Authorization': token
+    },
+    params: {
+      origem: origin
     }
   })
-
 
   return data
 }
 
 export async function login() {
 
-  const { data } = await axios.get(`${urlApi}/usuarios/loginClient`)
+  const { data } = await axios.get(`${urlApi}/usuarios/login`)
 
   return data
 }
@@ -89,17 +91,6 @@ export async function findAllPaymentMethods() {
   return data
 }
 
-export async function findAllLocalEmbarque(excursionId) {
-
-  const { data } = await axios.get(`${urlApi}/local-embarque-excursao/find/${excursionId}`, {
-    headers: {
-      'Authorization': token
-    }
-  })
-
-  return data
-}
-
 export async function customerCredit(id) {
 
   const { data } = await axios.get(`${urlApi}/credito-cliente/find/${id}`, {
@@ -112,5 +103,5 @@ export async function customerCredit(id) {
 }
 
 export async function cart(customerId) {
-  
+
 }
