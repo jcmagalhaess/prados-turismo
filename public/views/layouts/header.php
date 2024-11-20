@@ -25,7 +25,7 @@
                     </ul>
                     <div class="spacer"></div>
                     <div class="header__account">
-                        <i class="fa-regular fa-user"></i> <a href="#">Entre ou Cadastre-se</a>
+                        <i class="fa-regular fa-user"></i> <a href="login">Entre ou Cadastre-se</a>
                     </div>
                     <div class="header__cart">
                         <div class="header__value">R$ 0,00</div>

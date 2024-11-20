@@ -10,4 +10,9 @@ ul, ol {
 
 a {
     text-decoration: none;
+    color: var(--color-secondary);
+    transition: .3s ease;
+    &:hover {
+        color: var(--color-primary);
+    }
 }

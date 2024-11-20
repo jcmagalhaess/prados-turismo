@@ -15,6 +15,11 @@ if (!$pacote) {
 }
 ?>
 
+<main>
+    <div class="container">
+        
+    </div>
+</main>
 <h1><?php echo htmlspecialchars($pacote['nome']); ?></h1>
     <img src="imagens/<?php echo htmlspecialchars($pacote['imagem']); ?>" alt="<?php echo htmlspecialchars($pacote['nome']); ?>">
     <p><strong>Descrição:</strong> <?php echo htmlspecialchars($pacote['descricao']); ?></p>
