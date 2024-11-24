@@ -17,7 +17,7 @@ const paths = {
   js: './public/assets/js/**/*.js',           // Diretório dos arquivos JavaScript
   jsDist: './public/dist/js',                 // Diretório de saída dos arquivos JS minificados
   layouts: './public/views/layouts/*.php',    // Todos os arquivos PHP dentro de `views`
-  pages: './public/views/pages/*.php'         // Todos os arquivos PHP dentro de `views`
+  pages: './public/views/pages/**/*.php'         // Todos os arquivos PHP dentro de `views`
 };
 
 // Task: Compilar SCSS para CSS com Sourcemaps e Minificação
