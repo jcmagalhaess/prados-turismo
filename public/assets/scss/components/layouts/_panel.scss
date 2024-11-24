@@ -38,6 +38,34 @@ $component-name: 'my-account';
         font-weight: 400;
         margin-block: 20px;
     }
+    &__resume {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    &__order-infos {
+        background-color: var(--color-secondary-dark);
+        color: var(--color-light);
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+    }
+    &__item {
+        display: flex;
+        flex-direction: column;
+        text-transform: uppercase;
+    }
+    &__order-content {
+        display: flex;
+        padding: 20px;
+        gap: 20px;
+        align-items: center;
+    }
+    &__thumb {
+        width: 160px;
+        height: 80px;
+        overflow: hidden;
+    }
     &__shortcuts {
         display: flex;
         gap: 30px;
