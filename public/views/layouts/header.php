@@ -1,3 +1,20 @@
+<?php
+function getAbsoluteUrl($path = '') {
+    // Detecta o protocolo (http ou https)
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
+
+    // Host (domínio ou IP)
+    $host = $_SERVER['HTTP_HOST'];
+
+    // Caminho base da aplicação
+    $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+
+    // Monta a URL completa, garantindo que o caminho seja tratado corretamente
+    return $protocol . $host . $basePath . '/' . ltrim($path, '/');
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
