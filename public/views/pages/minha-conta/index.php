@@ -24,6 +24,10 @@
                                 include './views/pages/minha-conta/enderecos.php';
                                 break;
 
+                            case 'perfil':
+                                include './views/pages/minha-conta/perfil.php';
+                                break;
+
                             default:
                                 include './views/pages/404.php';
                                 break;

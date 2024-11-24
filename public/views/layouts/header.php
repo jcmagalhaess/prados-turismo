@@ -10,7 +10,7 @@ function getAbsoluteUrl($path = '') {
     $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
 
     // Monta a URL completa, garantindo que o caminho seja tratado corretamente
-    return $protocol . $host . $basePath . '/' . ltrim($path, '/');
+    return $protocol . $host . $basePath . ltrim($path, '/');
 }
 ?>
 
