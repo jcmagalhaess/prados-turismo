@@ -18,13 +18,23 @@ a {
     }
 }
 
-button {
-    background-color: var(--color-secondary) !important;
-    border: none !important;
-    height: 45px;
-    padding-inline: 25px !important;
-    &:hover {
-        background-color: var(--color-secondary-dark) !important;
+.btn{
+    &-primary,
+    &-secondary {
+        &:not(.btn-secondary) {
+            background-color: var(--color-secondary) !important;
+        }
+        border: none !important;
+        height: 45px;
+        padding-inline: 25px !important;
+        &:hover {
+            background-color: var(--color-secondary-dark) !important;
+        }
+    }
+    &-secondary {
+        &:hover {
+            background-color: #484c50 !important;
+        }
     }
 }
 
@@ -35,8 +45,28 @@ main:not(main.home) {
 
 img {
     height: auto;
-    max-width: 100%;
+    width: 100%;
     border: none;
     border-radius: 0;
     box-shadow: none;
+}
+
+.form{
+    &-control, &-select {
+        height: 55px !important;
+    }
+}
+
+.input-group {
+    align-items: center;
+    button {
+        transition: .2s ease;
+        height: 55px !important;
+        &:hover {
+            background-color: rgba($color: #000000, $alpha: 0.05) !important;
+        }
+        &:active {
+            background-color: rgba($color: #112c44, $alpha: 0.5) !important;
+        }
+    }
 }

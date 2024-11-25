@@ -3,6 +3,7 @@
     $routes = [
         '' => 'home.php',
         'pacotes' => 'pacotes.php',
+        'pacote' => 'single-pacote.php',
         'login' => 'login.php',
         'minha-conta' => 'minha-conta/index.php',
         'minha-conta/pedidos' => 'minha-conta/index.php',
