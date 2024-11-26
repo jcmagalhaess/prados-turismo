@@ -109,7 +109,7 @@ if (!$pacote) {
                                         <div class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                             <div class="d-flex flex-column">
                                                 <div><i class="fa-regular fa-user me-3"></i> Quantidade de pessoas</div>
-                                                <span>2 Adultos, 1 Crianças, 1 Crianças de Colo</span>
+                                                <span id="selected-amount-label">Selecione</span>
                                             </div>
                                         </div>
                                     </h2>
@@ -125,11 +125,11 @@ if (!$pacote) {
                                                 </div>
                                                 <div class="event__accordion-count">
                                                     <div class="input-group">
-                                                        <button type="button" class="input-group-text" id="basic-addon1">
+                                                        <button type="button" class="input-group-text" id="btn-plus-adults-count">
                                                             <i class="fa-solid fa-plus"></i>
                                                         </button>
-                                                        <input type="text" class="form-control text-center" value="0">
-                                                        <button type="button" class="input-group-text" id="basic-addon1">
+                                                        <input type="text" class="form-control text-center" id="input-adults-count" value="0">
+                                                        <button type="button" class="input-group-text" id="btn-minus-adults-count">
                                                             <i class="fa-solid fa-minus"></i>
                                                         </button>
                                                     </div>
@@ -145,11 +145,11 @@ if (!$pacote) {
                                                 </div>
                                                 <div class="event__accordion-count">
                                                     <div class="input-group">
-                                                        <button type="button" class="input-group-text" id="basic-addon1">
+                                                        <button type="button" class="input-group-text" id="btn-plus-children-count">
                                                             <i class="fa-solid fa-plus"></i>
                                                         </button>
-                                                        <input type="text" class="form-control text-center" value="0">
-                                                        <button type="button" class="input-group-text" id="basic-addon1">
+                                                        <input type="text" class="form-control text-center" id="input-children-count" value="0">
+                                                        <button type="button" class="input-group-text" id="btn-minus-children-count">
                                                             <i class="fa-solid fa-minus"></i>
                                                         </button>
                                                     </div>
@@ -165,11 +165,11 @@ if (!$pacote) {
                                                 </div>
                                                 <div class="event__accordion-count">
                                                     <div class="input-group">
-                                                        <button type="button" class="input-group-text" id="basic-addon1">
+                                                        <button type="button" class="input-group-text" id="btn-plus-babies-count">
                                                             <i class="fa-solid fa-plus"></i>
                                                         </button>
-                                                        <input type="text" class="form-control text-center" value="0">
-                                                        <button type="button" class="input-group-text" id="basic-addon1">
+                                                        <input type="text" class="form-control text-center" id="input-babies-count" value="0">
+                                                        <button type="button" class="input-group-text" id="btn-minus-babies-count">
                                                             <i class="fa-solid fa-minus"></i>
                                                         </button>
                                                     </div>
@@ -199,6 +199,65 @@ if (!$pacote) {
     </div>
 </main>
 
+<script>
+    let enumCategories = [
+        { key: "adults", value: "Adultos" },
+        { key: "children", value: "Crianças" },
+        { key: "babies", value: "Crianças de Colo" },
+    ]
+    let labels = [];
+    
+    // Event listeners para aumentar e diminuir quantidade de pessoas
+    let categories = ['adults', 'children', 'babies'];
+    
+    categories.forEach(category => {
+        document.getElementById(`btn-plus-${category}-count`).addEventListener('click', () => {
+            let count = parseInt(document.getElementById(`input-${category}-count`).value);
+            count++;
+            document.getElementById(`input-${category}-count`).value = count;
+            updateCountLabel(category);
+        });
+        
+        document.getElementById(`btn-minus-${category}-count`).addEventListener('click', () => {
+            let count = parseInt(document.getElementById(`input-${category}-count`).value);
+            if (count > 0) {
+                count--;
+                document.getElementById(`input-${category}-count`).value = count;
+                updateCountLabel(category);
+            }
+        });
+    });
+
+    
+    function updateCountLabel(control) {
+        let amount = parseInt(document.getElementById(`input-${control}-count`).value);
+        
+        enumCategories.forEach(category => {
+            let exist = labels.some(item => item.replace(/^\d+\s*/, '') === category.value);
+            
+            if (category.key === control) {
+                if (!exist) {
+                    labels.push(`${amount} ${category.value}`);
+                } else {
+                    labels = labels.filter(item => item.replace(/^\d+\s*/, '')!== category.value);
+                    labels.push(`${amount} ${category.value}`);
+                }
+            }
+        });
+        
+        labels = labels.filter(item => !item.includes('0'));
+
+        labels = labels.sort((a, b) => {
+            // Remover números iniciais e espaços
+            const textoA = a.replace(/^\d+\s*/, '');
+            const textoB = b.replace(/^\d+\s*/, '');
+            return textoA.localeCompare(textoB); // Ordenação alfabética
+        })
+
+        if (labels.length === 0) document.getElementById('selected-amount-label').textContent = 'Selecione';
+        else document.getElementById('selected-amount-label').textContent = labels.join(', ');
+    }
+</script>
 
 <!-- <h1><?php echo htmlspecialchars($pacote['nome']); ?></h1>
     <img src="imagens/<?php echo htmlspecialchars($pacote['imagem']); ?>" alt="<?php echo htmlspecialchars($pacote['nome']); ?>">

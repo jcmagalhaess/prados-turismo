@@ -79,6 +79,9 @@ $component-name: 'event';
                 font-size: 70%;
             }
         }
+        &-count {
+            width: 50%;
+        }
         button {
             background-color: transparent !important;
         }
