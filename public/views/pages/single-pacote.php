@@ -189,10 +189,8 @@ if (!$pacote) {
                 </form>
 
                 <div class="event__totalizers">
-                    <span>
-                        <strong>Subtotal: </strong> R$ 490,00
-                    </span>
-                    <span class="text-success">Pagando à vista: R$ 460,00</span>
+                    <div id="subtotal-label"></div>
+                    <div id="payment-label"></div>
                 </div>
             </div>
         </div>
@@ -201,9 +199,9 @@ if (!$pacote) {
 
 <script>
     let enumCategories = [
-        { key: "adults", value: "Adultos" },
-        { key: "children", value: "Crianças" },
-        { key: "babies", value: "Crianças de Colo" },
+        { key: "adults", value: "Adultos", price: <?php echo 490; ?> },
+        { key: "children", value: "Crianças", price: <?php echo 490; ?> },
+        { key: "babies", value: "Crianças de Colo", price: <?php echo 0; ?> },
     ]
     let labels = [];
     
@@ -216,6 +214,7 @@ if (!$pacote) {
             count++;
             document.getElementById(`input-${category}-count`).value = count;
             updateCountLabel(category);
+            updateTotalizers();
         });
         
         document.getElementById(`btn-minus-${category}-count`).addEventListener('click', () => {
@@ -224,6 +223,7 @@ if (!$pacote) {
                 count--;
                 document.getElementById(`input-${category}-count`).value = count;
                 updateCountLabel(category);
+                updateTotalizers();
             }
         });
     });
@@ -257,12 +257,18 @@ if (!$pacote) {
         if (labels.length === 0) document.getElementById('selected-amount-label').textContent = 'Selecione';
         else document.getElementById('selected-amount-label').textContent = labels.join(', ');
     }
-</script>
 
-<!-- <h1><?php echo htmlspecialchars($pacote['nome']); ?></h1>
-    <img src="imagens/<?php echo htmlspecialchars($pacote['imagem']); ?>" alt="<?php echo htmlspecialchars($pacote['nome']); ?>">
-    <p><strong>Descrição:</strong> <?php echo htmlspecialchars($pacote['descricao']); ?></p>
-    <p><strong>Preço:</strong> <?php echo htmlspecialchars($pacote['preco']); ?></p>
-    <p><strong>Duração:</strong> <?php echo htmlspecialchars($pacote['duracao']); ?></p>
-    
-    <a href="pacotes.php">Voltar para lista de pacotes</a> -->
+    function updateTotalizers() {
+        let subtotal = 0;
+        let payment = 0;
+
+        enumCategories.forEach(category => {
+            let count = parseInt(document.getElementById(`input-${category.key}-count`).value);
+            subtotal += count * category.price;
+            payment = subtotal - (subtotal * 0.05);
+        });
+
+        document.getElementById('subtotal-label').innerHTML = `<strong>Subtotal: </strong> R$ ${subtotal.toFixed(2)}`;// `Subtotal: R$ ${subtotal.toFixed(2)}`;
+        document.getElementById('payment-label').innerHTML = `<span class="text-success">Pagando à vista: R$ ${payment.toFixed(2)}</span>`; //`Pagando à vista: R$ ${payment.toFixed(2)}`;
+    }
+</script>
