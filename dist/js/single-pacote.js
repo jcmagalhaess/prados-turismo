@@ -151,6 +151,7 @@ function pricesComponent() {
     clone.classList.add('event__totalizers--participants');
 
     document.getElementById('prices').appendChild(clone);
+    document.getElementById('order-resume-price').appendChild(clone);
 }
 
 // Função para pegar os dados de todos os formulários
@@ -161,9 +162,6 @@ function pegarDadosFormularios() {
 
     formulários.forEach((form) => {
         const dadosFormulario = {};
-
-        console.log(form);
-        
 
         // Pega todos os campos de input dentro do formulário
         const campos = form.querySelectorAll('input, select, textarea');

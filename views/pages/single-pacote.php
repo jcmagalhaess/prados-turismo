@@ -176,8 +176,8 @@
                     <?php include "./views/pages/participantes.php"; ?>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="pegarDadosFormularios()">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <a type="button" href="<?php echo getAbsoluteUrl('checkout'); ?>" class="btn btn-primary" onclick="pegarDadosFormularios()">Pagar</a>
                 </div>
             </div>
         </div>

@@ -40,6 +40,7 @@ $component-name: 'event';
         ul > li:not(:last-child) {
             width: 50%;
             margin-block-end: 20px;
+            padding-inline-end: 20px;
         }
     }
     &__accordion {
@@ -98,6 +99,11 @@ $component-name: 'event';
             border: none;
             padding: 0;
             text-align: end;
+        }
+        &--order-resume {
+            border: none;
+            margin: 0;
+            padding-inline: 20px;
         }
     }
     &__gallery {
