@@ -1,9 +1,9 @@
 <?php
     $menu = array(
-        array('label' => 'Painel', 'route' => 'minha-conta'),
-        array('label' => 'Pedidos', 'route' => 'minha-conta/pedidos'),
-        array('label' => 'Endereços', 'route' => 'minha-conta/enderecos'),
-        array('label' => 'Perfil', 'route' => 'minha-conta/perfil'),
+        array('label' => 'Painel', 'route' => '/minha-conta'),
+        array('label' => 'Pedidos', 'route' => '/minha-conta/pedidos'),
+        array('label' => 'Endereços', 'route' => '/minha-conta/enderecos'),
+        array('label' => 'Perfil', 'route' => '/minha-conta/perfil'),
     );
 ?>
 

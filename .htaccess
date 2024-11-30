@@ -1,11 +1,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Define a raiz do projeto
+    # Define a raiz do projeto (ajuste o caminho conforme necessário)
     RewriteBase /
 
-    # Redireciona tudo que não seja arquivo ou diretório existente para index.php
+    # Exclui arquivos estáticos (CSS, JS, imagens, etc.) do redirecionamento
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|otf|webp|avif)$ [NC]
+    
+    # Redireciona as demais requisições para index.php
     RewriteRule ^(.*)$ index.php [L]
 </IfModule>

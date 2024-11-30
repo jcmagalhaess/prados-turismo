@@ -12,7 +12,7 @@
             <input type="email" class="form-control" id="password">
         </div>
         <div class="d-flex align-items-center mb-2">
-            <button type="submit" class="btn btn-primary me-3" onClick="window.location.href='minha-conta';">Submit</button>
+            <button type="submit" class="btn btn-primary me-3" onClick="window.location.href='/minha-conta';">Submit</button>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
