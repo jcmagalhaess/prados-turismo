@@ -1,12 +1,12 @@
-// const urlApi = ',';
+// const urlApi = 'http://localhost:8000';
 const urlApi = 'http://localhost:8000';
 
 export async function auth() {
 
   const { data } = await axios.post(`${urlApi}/usuarios/auth`,
     {
-      // username: ',',
-      // password: ','
+      // username: 'PradosAdmin',
+      // password: '1234'
       username: 'PradosAdmin',
       password: '1234'
     }
@@ -62,9 +62,12 @@ export async function findDestinyByOrigin(origin) {
   return data
 }
 
-export async function login() {
+export async function login(username, password) {
 
-  const { data } = await axios.get(`${urlApi}/usuarios/login`)
+  const { data } = await axios.post(`${urlApi}/usuarios/login-user-client`, {
+    username,
+    password
+  })
 
   return data
 }
@@ -104,4 +107,19 @@ export async function customerCredit(id) {
 
 export async function cart(customerId) {
 
+}
+
+export async function registerClient(username) {
+
+  const data = await axios.post(`${urlApi}/usuarios/register-user-client`,
+    { email: username },
+    {
+      headers: {
+        'Authorization': token
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+
+  return data
 }

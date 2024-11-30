@@ -1,18 +1,18 @@
 <?php
-    function getAbsoluteUrl($path = '') {
-        // Detecta o protocolo (http ou https)
-        $isHttps = (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off') || $_SERVER['SERVER_PORT'] == 443 || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
-        $protocol = $isHttps ? 'https://' : 'http://';
-        
-        // Host (domínio ou IP)
-        $host = $_SERVER['HTTP_HOST'];
+function getAbsoluteUrl($path = '') {
+    // Detecta o protocolo (http ou https)
+    $isHttps = (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off') || $_SERVER['SERVER_PORT'] == 443 || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
+    $protocol = $isHttps ? 'https://' : 'http://';
 
-        // Caminho base da aplicação
-        $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+    // Host (domínio ou IP)
+    $host = $_SERVER['HTTP_HOST'];
 
-        // Monta a URL completa, garantindo que o caminho seja tratado corretamente
-        return $protocol . $host . $basePath . '/' . ltrim($path, '/');
-    }
+    // Caminho base da aplicação
+    $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+
+    // Monta a URL completa, garantindo que o caminho seja tratado corretamente
+    return $protocol . $host . $basePath . '/' . ltrim($path, '/');
+}
 
 ?>
 
@@ -80,7 +80,7 @@
         import {
             auth,
             getCookie
-        } from './dist/js/main.min.js'; // Import auth from the module
+        } from './dist/js/main.min.js';
 
         let token = getCookie('token')
 

@@ -14,7 +14,7 @@ require('dotenv').config();
 const paths = {
   scss: './assets/scss/**/*.scss',     // Diretório dos arquivos SCSS
   css: './dist/css',                   // Diretório de saída dos arquivos CSS compilados
-  js: './assets/js/**/*.js',           // Diretório dos arquivos JavaScript
+  js: './dist/js/**/*.js',           // Diretório dos arquivos JavaScript
   jsDist: './dist/js',                 // Diretório de saída dos arquivos JS minificados
   layouts: './views/layouts/*.php',    // Todos os arquivos PHP dentro de `views`
   pages: './views/pages/**/*.php'         // Todos os arquivos PHP dentro de `views`
