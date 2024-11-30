@@ -233,46 +233,6 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="order__resume">
-                            <span class="event__price">Pacote para Rio de Janeiro e Arraial do Cabo</span>
-                            <ul class="event__category">
-                                <li class="d-flex justify-content-between">
-                                    <span>2x Adultos</span>
-                                    <span>R$ 5.980,00</span>
-                                </li>
-                            </ul>
-                            <hr>
-                            <ul class="d-flex gap-4">
-                                <li class="d-flex flex-column">
-                                    <strong>Data de embarque</strong>
-                                    15/09/2021
-                                </li>
-                                <li class="d-flex flex-column">
-                                    <strong>Data de retorno</strong>
-                                    22/09/2021
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="order__resume">
-                            <span class="event__price">Pacote para Rio de Janeiro e Arraial do Cabo</span>
-                            <ul class="event__category">
-                                <li class="d-flex justify-content-between">
-                                    <span>2x Adultos</span>
-                                    <span>R$ 5.980,00</span>
-                                </li>
-                            </ul>
-                            <hr>
-                            <ul class="d-flex gap-4">
-                                <li class="d-flex flex-column">
-                                    <strong>Data de embarque</strong>
-                                    15/09/2021
-                                </li>
-                                <li class="d-flex flex-column">
-                                    <strong>Data de retorno</strong>
-                                    22/09/2021
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                     <div id="order-resume-price" class="card-event__actions align-items-center py-2">
                         <div class="event__totalizers--order-resume w-100">
