@@ -421,7 +421,9 @@
         </div>
 
         <div class="d-flex justify-content-end mt-5">
-            <button type="button" class="btn btn-primary">Adicionar no carrinho</button>
+            <button type="button" class="btn btn-primary" onclick="adicionarAoCarrinho()">Adicionar no carrinho</button>
         </div>
     </div>
 </main>
+
+<script src="<?php echo getAbsoluteUrl('/dist/js/checkout.js'); ?>"></script>

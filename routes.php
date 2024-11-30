@@ -6,6 +6,7 @@
         'pacote' => 'single-pacote.php',
         'login' => 'login.php',
         'checkout' => 'checkout.php',
+        'meu-carrinho' => 'meu-carrinho.php',
         'minha-conta' => 'minha-conta/index.php',
         'minha-conta/pedidos' => 'minha-conta/index.php',
         'minha-conta/enderecos' => 'minha-conta/index.php',
