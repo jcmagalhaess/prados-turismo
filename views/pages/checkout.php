@@ -289,5 +289,139 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <h5 class="display-6 my-3">Dados dos passageiros</h5>
+            
+            <div class="accordion" id="accordion">
+                <div id="accordion-item-1" class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                            <i class="fa-solid fa-ticket me-3"></i> Júlio Magalhães
+                        </button>
+                    </h2>
+                    <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                        <div class="accordion-body">
+                            <div id="form-participantes-1">
+                                <table class="event__table event__table--no-last-border table">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">E-mail</th>
+                                            <td>jcmagalhaes301@gmail.com</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Telefone</th>
+                                            <td>5585981921834</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">RG</th>
+                                            <td>2009099146767</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Órgão emissor</th>
+                                            <td>SSP-CE</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Data de nascimento</th>
+                                            <td>04/07/1997</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Locais de embarque</th>
+                                            <td>19:00 – North Shopping</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="accordion-item-2" class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                            <i class="fa-solid fa-ticket me-3"></i> Júlio Magalhães
+                        </button>
+                    </h2>
+                    <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                        <div class="accordion-body">
+                            <div id="form-participantes-2">
+                                <table class="event__table event__table--no-last-border table">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">E-mail</th>
+                                            <td>jcmagalhaes301@gmail.com</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Telefone</th>
+                                            <td>5585981921834</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">RG</th>
+                                            <td>2009099146767</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Órgão emissor</th>
+                                            <td>SSP-CE</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Data de nascimento</th>
+                                            <td>04/07/1997</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Locais de embarque</th>
+                                            <td>19:00 – North Shopping</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="accordion-item-3" class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                            <i class="fa-solid fa-ticket me-3"></i> Júlio Magalhães
+                        </button>
+                    </h2>
+                    <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                        <div class="accordion-body">
+                            <div id="form-participantes-3">
+                                <table class="event__table event__table--no-last-border table">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">E-mail</th>
+                                            <td>jcmagalhaes301@gmail.com</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Telefone</th>
+                                            <td>5585981921834</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">RG</th>
+                                            <td>2009099146767</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Órgão emissor</th>
+                                            <td>SSP-CE</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Data de nascimento</th>
+                                            <td>04/07/1997</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Locais de embarque</th>
+                                            <td>19:00 – North Shopping</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-5">
+            <button type="button" class="btn btn-primary">Adicionar no carrinho</button>
+        </div>
     </div>
 </main>

@@ -42,6 +42,14 @@ $component-name: 'event';
             margin-block-end: 20px;
             padding-inline-end: 20px;
         }
+        &--no-last-border {
+            tr:last-child {
+                border-bottom: none;
+                th, td {
+                    border-bottom: none;
+                }
+            }
+        }
     }
     &__accordion {
         border: 1px solid #ccc !important;
