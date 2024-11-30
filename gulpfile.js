@@ -12,12 +12,12 @@ require('dotenv').config();
 
 // Caminhos dos arquivos
 const paths = {
-  scss: './public/assets/scss/**/*.scss',     // Diretório dos arquivos SCSS
-  css: './public/dist/css',                   // Diretório de saída dos arquivos CSS compilados
-  js: './public/assets/js/**/*.js',           // Diretório dos arquivos JavaScript
-  jsDist: './public/dist/js',                 // Diretório de saída dos arquivos JS minificados
-  layouts: './public/views/layouts/*.php',    // Todos os arquivos PHP dentro de `views`
-  pages: './public/views/pages/**/*.php'         // Todos os arquivos PHP dentro de `views`
+  scss: './assets/scss/**/*.scss',     // Diretório dos arquivos SCSS
+  css: './dist/css',                   // Diretório de saída dos arquivos CSS compilados
+  js: './assets/js/**/*.js',           // Diretório dos arquivos JavaScript
+  jsDist: './dist/js',                 // Diretório de saída dos arquivos JS minificados
+  layouts: './views/layouts/*.php',    // Todos os arquivos PHP dentro de `views`
+  pages: './views/pages/**/*.php'         // Todos os arquivos PHP dentro de `views`
 };
 
 // Task: Compilar SCSS para CSS com Sourcemaps e Minificação
@@ -53,7 +53,7 @@ gulp.task('minify-js', function () {
 
 // Task: Iniciar o servidor PHP
 gulp.task('php-server', function (done) {
-  const phpServer = spawn('php', ['-S', 'localhost:5000', '-t', 'public']);
+  const phpServer = spawn('php', ['-S', 'localhost:5000', '-t', '.']);
 
   phpServer.stdout.on('data', (data) => {
     console.log(`Servidor PHP: ${data}`);

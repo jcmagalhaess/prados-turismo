@@ -1,7 +1,7 @@
         <footer class="footer">
             <div class="footer__informations">
                 <figure class="footer__logo">
-                    <img src="/assets/images/logo.webp" alt="Logo - Prados Turismo">
+                    <img src="<?php echo getAbsoluteUrl('/assets/images/logo.webp'); ?>" alt="Logo - Prados Turismo">
                 </figure>
                 <div class="footer__sac">
                     <h1 class="footer__title">Atendimento</h1>

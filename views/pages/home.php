@@ -64,7 +64,7 @@
                     <div class="card-event">
                         <div class="card-event__content">
                             <figure class="card-event__thumbnail">
-                                <img src="<?php echo $value['imagem']; ?>" alt="Rio de Janeiro">
+                                <img src="<?php echo getAbsoluteUrl($value['imagem']); ?>" alt="Rio de Janeiro">
                                 <span class="card-event__date">
                                     <?php echo $value['duracao']; ?>
                                 </span>
@@ -86,7 +86,4 @@
     </section>
 </main>
 
-<script type="module" src="dist/js/main.min.js"></script>
-
-<script type="module">
-</script>
+<script type="module" src="<?php echo getAbsoluteUrl('dist/js/main.min.js'); ?>"></script>

@@ -76,16 +76,16 @@ if (!$pacote) {
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae condimentum egestas, libero dolor auctor tellus, eu consectetur neque elit quis nunc. Cras elementum pretium est.</p>
                     <ul class="event__gallery">
                         <li class="event__item">
-                            <img src="./assets/images/banner.jpg" alt="Avatar">
+                            <img src="<?echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
                         </li>
                         <li class="event__item">
-                            <img src="./assets/images/banner.jpg" alt="Avatar">
+                            <img src="<?echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
                         </li>
                         <li class="event__item">
-                            <img src="./assets/images/banner.jpg" alt="Avatar">
+                            <img src="<?echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
                         </li>
                         <li class="event__item">
-                            <img src="./assets/images/banner.jpg" alt="Avatar">
+                            <img src="<?echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
                         </li>
                     </ul>
                 </div>

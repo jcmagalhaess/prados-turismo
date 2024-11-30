@@ -1,17 +1,19 @@
 <?php
-function getAbsoluteUrl($path = '') {
-    // Detecta o protocolo (http ou https)
-    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
+    function getAbsoluteUrl($path = '') {
+        // Detecta o protocolo (http ou https)
+        $isHttps = (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off') || $_SERVER['SERVER_PORT'] == 443 || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
+        $protocol = $isHttps ? 'https://' : 'http://';
+        
+        // Host (domínio ou IP)
+        $host = $_SERVER['HTTP_HOST'];
 
-    // Host (domínio ou IP)
-    $host = $_SERVER['HTTP_HOST'];
+        // Caminho base da aplicação
+        $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
 
-    // Caminho base da aplicação
-    $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+        // Monta a URL completa, garantindo que o caminho seja tratado corretamente
+        return $protocol . $host . $basePath . '/' . ltrim($path, '/');
+    }
 
-    // Monta a URL completa, garantindo que o caminho seja tratado corretamente
-    return $protocol . $host . $basePath . ltrim($path, '/');
-}
 ?>
 
 
@@ -24,7 +26,7 @@ function getAbsoluteUrl($path = '') {
     <title>Prados Turismo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/dist/css/main.min.css">
+    <link rel="stylesheet" href="<?php echo getAbsoluteUrl('/dist/css/main.min.css'); ?>">
 </head>
 
 <body>
