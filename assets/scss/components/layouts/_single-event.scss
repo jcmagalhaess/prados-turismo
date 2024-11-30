@@ -93,6 +93,12 @@ $component-name: 'event';
         border-top: 1px solid #ccc;
         margin-block-start: 20px;
         padding-block-end: 0;
+        &--participants {
+            margin: 0;
+            border: none;
+            padding: 0;
+            text-align: end;
+        }
     }
     &__gallery {
         display: flex;
