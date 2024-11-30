@@ -46,12 +46,4 @@ $component-name: "home";
             margin-inline-start: 20px;
         }
     }
-
-    &__events {
-        display: flex;
-        flex-flow: wrap;
-        justify-content: flex-start;
-        gap: 30px;
-        margin-block-end: 20px;
-    }
 }
