@@ -1,18 +1,24 @@
 
 <?php
-// single-event.php
+    // single-event.php
 
-// Inclui o arquivo com os dados dos pacotes
-include 'pacotes.php';
+    // Inclui o arquivo com os dados dos pacotes
+    include 'pacotes.php';
 
-// Obtém o ID do pacote da URL (exemplo: single-event.php?id=1)
-$pacoteId = $_GET['id'] ?? null;
-$pacote = getPacoteData($pacoteId);
+    // Obtém o ID do pacote da URL (exemplo: single-event.php?id=1)
+    $pacoteId = $_GET['id'] ?? null;
+    $pacote = getPacoteData($pacoteId);
 
-if (!$pacote) {
-    echo "Pacote não encontrado.";
-    exit;
-}
+    if (!$pacote) {
+        echo "Pacote não encontrado.";
+        exit;
+    }
+
+   $enumCategories = [
+        ['key' => 'adults', 'value' => 'Adultos', 'age' => '+12 anos', 'price' => 490],
+        ['key' => 'children', 'value' => 'Crianças', 'age' => '6 a 12 anos', 'price' => 490],
+        ['key' => 'babies', 'value' => 'Crianças de Colo', 'age' => '0 a 5 anos', 'price' => 0]
+    ];
 ?>
 
 <main>
@@ -76,28 +82,28 @@ if (!$pacote) {
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae condimentum egestas, libero dolor auctor tellus, eu consectetur neque elit quis nunc. Cras elementum pretium est.</p>
                     <ul class="event__gallery">
                         <li class="event__item">
-                            <img src="<?echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
+                            <img src="<?php echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
                         </li>
                         <li class="event__item">
-                            <img src="<?echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
+                            <img src="<?php echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
                         </li>
                         <li class="event__item">
-                            <img src="<?echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
+                            <img src="<?php echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
                         </li>
                         <li class="event__item">
-                            <img src="<?echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
+                            <img src="<?php echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="event__sidebar">
-                <form>
+                <form id="form-period-event">
                     <div class="row">
                         <div class="col-md-12">
                             <label for="period"><i class="fa-regular fa-clock me-3 mb-3"></i>Selecione o período</label>
-                            <select class="form-select" name="period" aria-label="Default select example">
-                                <option></option>
-                                <option value="1">30/12/2024 a 01/01/2025</option>
+                            <select class="form-select" id="period-event" required name="period" aria-label="Default select example">
+                                <option value="null"></option>
+                                <option value="30/12/2024 a 01/01/2025">30/12/2024 a 01/01/2025</option>
                             </select>
                         </div>
                     </div>
@@ -115,66 +121,28 @@ if (!$pacote) {
                                     </h2>
                                     <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
-                                            <div class="event__accordion-item">
-                                                <div class="event__accordion-type">
-                                                    <span>
-                                                        Adultos
-                                                        <span class="event__accordion-type--feature">(+12 anos)</span>
-                                                    </span>
-                                                    <span class="event__accordion-type--category">R$ 490,00</span>
-                                                </div>
-                                                <div class="event__accordion-count">
-                                                    <div class="input-group">
-                                                        <button type="button" class="input-group-text" id="btn-plus-adults-count">
-                                                            <i class="fa-solid fa-plus"></i>
-                                                        </button>
-                                                        <input type="text" class="form-control text-center" id="input-adults-count" value="0">
-                                                        <button type="button" class="input-group-text" id="btn-minus-adults-count">
-                                                            <i class="fa-solid fa-minus"></i>
-                                                        </button>
+                                            <?php foreach ($enumCategories as $category): ?>
+                                                <div class="event__accordion-item">
+                                                    <div class="event__accordion-type">
+                                                        <span>
+                                                            <?php echo $category['value']; ?>
+                                                            <span class="event__accordion-type--feature">(<?php echo $category['age']; ?>)</span>
+                                                        </span>
+                                                        <span class="event__accordion-type--category">R$ <?php echo $category['price']; ?></span>
+                                                    </div>
+                                                    <div class="event__accordion-count">
+                                                        <div class="input-group">
+                                                            <button type="button" class="input-group-text" id="btn-plus-<?php echo $category['key']; ?>-count">
+                                                                <i class="fa-solid fa-plus"></i>
+                                                            </button>
+                                                            <input type="text" class="form-control text-center" id="input-<?php echo $category['key']; ?>-count" value="0">
+                                                            <button type="button" class="input-group-text" id="btn-minus-<?php echo $category['key']; ?>-count">
+                                                                <i class="fa-solid fa-minus"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="event__accordion-item">
-                                                <div class="event__accordion-type">
-                                                    <span>
-                                                        Crianças
-                                                        <span class="event__accordion-type--feature">(6 a 12 anos)</span>
-                                                    </span>
-                                                    <span class="event__accordion-type--category">R$ 490,00</span>
-                                                </div>
-                                                <div class="event__accordion-count">
-                                                    <div class="input-group">
-                                                        <button type="button" class="input-group-text" id="btn-plus-children-count">
-                                                            <i class="fa-solid fa-plus"></i>
-                                                        </button>
-                                                        <input type="text" class="form-control text-center" id="input-children-count" value="0">
-                                                        <button type="button" class="input-group-text" id="btn-minus-children-count">
-                                                            <i class="fa-solid fa-minus"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="event__accordion-item">
-                                                <div class="event__accordion-type">
-                                                    <span>
-                                                        Crianças de colo
-                                                        <span class="event__accordion-type--feature">(0 a 5 anos)</span>
-                                                    </span>
-                                                    <span class="event__accordion-type--category">Gratuito</span>
-                                                </div>
-                                                <div class="event__accordion-count">
-                                                    <div class="input-group">
-                                                        <button type="button" class="input-group-text" id="btn-plus-babies-count">
-                                                            <i class="fa-solid fa-plus"></i>
-                                                        </button>
-                                                        <input type="text" class="form-control text-center" id="input-babies-count" value="0">
-                                                        <button type="button" class="input-group-text" id="btn-minus-babies-count">
-                                                            <i class="fa-solid fa-minus"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <?php endforeach; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +151,7 @@ if (!$pacote) {
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-primary w-100">Reservar agora</button>
+                            <button type="button" class="btn btn-primary w-100" id="btn-reservation-now" disabled="true" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick="updateTicketsAmount()">Reservar agora</button>
                         </div>
                     </div>
                 </form>
@@ -195,6 +163,25 @@ if (!$pacote) {
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Informações dos ingressos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <?php include "./views/pages/participantes.php"; ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 <script>
@@ -202,73 +189,6 @@ if (!$pacote) {
         { key: "adults", value: "Adultos", price: <?php echo 490; ?> },
         { key: "children", value: "Crianças", price: <?php echo 490; ?> },
         { key: "babies", value: "Crianças de Colo", price: <?php echo 0; ?> },
-    ]
-    let labels = [];
-    
-    // Event listeners para aumentar e diminuir quantidade de pessoas
-    let categories = ['adults', 'children', 'babies'];
-    
-    categories.forEach(category => {
-        document.getElementById(`btn-plus-${category}-count`).addEventListener('click', () => {
-            let count = parseInt(document.getElementById(`input-${category}-count`).value);
-            count++;
-            document.getElementById(`input-${category}-count`).value = count;
-            updateCountLabel(category);
-            updateTotalizers();
-        });
-        
-        document.getElementById(`btn-minus-${category}-count`).addEventListener('click', () => {
-            let count = parseInt(document.getElementById(`input-${category}-count`).value);
-            if (count > 0) {
-                count--;
-                document.getElementById(`input-${category}-count`).value = count;
-                updateCountLabel(category);
-                updateTotalizers();
-            }
-        });
-    });
-
-    
-    function updateCountLabel(control) {
-        let amount = parseInt(document.getElementById(`input-${control}-count`).value);
-        
-        enumCategories.forEach(category => {
-            let exist = labels.some(item => item.replace(/^\d+\s*/, '') === category.value);
-            
-            if (category.key === control) {
-                if (!exist) {
-                    labels.push(`${amount} ${category.value}`);
-                } else {
-                    labels = labels.filter(item => item.replace(/^\d+\s*/, '')!== category.value);
-                    labels.push(`${amount} ${category.value}`);
-                }
-            }
-        });
-        
-        labels = labels.filter(item => !item.includes('0'));
-
-        labels = labels.sort((a, b) => {
-            // Remover números iniciais e espaços
-            const textoA = a.replace(/^\d+\s*/, '');
-            const textoB = b.replace(/^\d+\s*/, '');
-            return textoA.localeCompare(textoB); // Ordenação alfabética
-        })
-
-        if (labels.length === 0) document.getElementById('selected-amount-label').textContent = 'Selecione';
-        else document.getElementById('selected-amount-label').textContent = labels.join(', ');
-    }
-
-    function updateTotalizers() {
-        let subtotal = 0;
-        let payment = 0;
-
-        enumCategories.forEach(category => {
-            let count = parseInt(document.getElementById(`input-${category.key}-count`).value);
-            subtotal += count * category.price;
-            payment = subtotal - (subtotal * 0.05);
-        });
-
-        document.getElementById('subtotal-label').innerHTML = `<strong>Subtotal: </strong> R$ ${subtotal.toFixed(2)}`;// `Subtotal: R$ ${subtotal.toFixed(2)}`;
-        document.getElementById('payment-label').innerHTML = `<span class="text-success">Pagando à vista: R$ ${payment.toFixed(2)}</span>`; //`Pagando à vista: R$ ${payment.toFixed(2)}`;
-    }
+    ];
 </script>
+<script src="<?php echo getAbsoluteUrl('/dist/js/single-pacote.js'); ?>"></script>
