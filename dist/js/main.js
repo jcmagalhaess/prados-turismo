@@ -12,7 +12,7 @@ export async function auth() {
     }
   )
 
-  document.cookie = `token=${data.token}`
+  localStorage.setItem('token', data.token)
 }
 
 export function getCookie(name) {
@@ -39,9 +39,12 @@ export async function findExcursion(id) {
 
 export async function findAllExcursions() {
 
-  const { data } = await axios.get(`${urlApi}/excursao/findAll`, {
+  const { data } = await axios.get(`${urlApi}/excursao/index`, {
     headers: {
       'Authorization': token
+    },
+    params: {
+      publicado: 1
     }
   })
 

@@ -82,12 +82,12 @@ function getAbsoluteUrl($path = '') {
             getCookie
         } from './dist/js/main.min.js';
 
-        let token = getCookie('token')
+        let token = localStorage.getItem('token')
 
         if (!token) {
             await auth()
-            token = getCookie('token')
+            token = localStorage.getItem('token')
         }
 
-        window.token = token
+        localStorage.setItem('token', token)
     </script>
