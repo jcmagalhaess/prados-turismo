@@ -30,7 +30,7 @@ export async function findExcursion(id) {
 
   const { data } = await axios.get(`${urlApi}/excursao/find/${id}`, {
     headers: {
-      'Authorization': token
+      'Authorization': localStorage.getItem('token')
     }
   })
 
@@ -41,7 +41,7 @@ export async function findAllExcursions() {
 
   const { data } = await axios.get(`${urlApi}/excursao/index`, {
     headers: {
-      'Authorization': token
+      'Authorization': localStorage.getItem('token')
     },
     params: {
       publicado: 1
@@ -55,7 +55,7 @@ export async function findDestinyByOrigin(origin) {
 
   const { data } = await axios.get(`${urlApi}/excursao/index`, {
     headers: {
-      'Authorization': token
+      'Authorization': localStorage.getItem('token')
     },
     params: {
       origem: origin
@@ -79,7 +79,7 @@ export async function transaction(postData) {
 
   const { data } = await axios.post(`${urlApi}/financeirio/create`, postData, {
     headers: {
-      'Authorization': token
+      'Authorization': localStorage.getItem('token')
     }
   })
 
@@ -90,7 +90,7 @@ export async function findAllPaymentMethods() {
 
   const { data } = await axios.get(`${urlApi}/forma-pagamento/findAll`, {
     headers: {
-      'Authorization': token
+      'Authorization': localStorage.getItem('token')
     }
   })
 
@@ -101,7 +101,7 @@ export async function customerCredit(id) {
 
   const { data } = await axios.get(`${urlApi}/credito-cliente/find/${id}`, {
     headers: {
-      'Authorization': token
+      'Authorization': localStorage.getItem('token')
     }
   })
 
@@ -118,7 +118,7 @@ export async function registerClient(username) {
     { email: username },
     {
       headers: {
-        'Authorization': token
+        'Authorization': localStorage.getItem('token')
       }
     }).catch((err) => {
       console.log(err)
