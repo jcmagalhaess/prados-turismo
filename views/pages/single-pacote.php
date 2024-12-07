@@ -151,7 +151,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-primary w-100" id="btn-reservation-now" disabled="true" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick="updateTicketsAmount()">Reservar agora</button>
+                            <button type="button" class="btn btn-primary w-100" id="btn-reservation-now" disabled="true" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick="createReservation(<?php echo 490; ?>)">Reservar agora</button>
                         </div>
                     </div>
                 </form>
@@ -190,5 +190,10 @@
         { key: "children", value: "Crianças", price: <?php echo 490; ?> },
         { key: "babies", value: "Crianças de Colo", price: <?php echo 0; ?> },
     ];
+
+    if (sessionStorage.getItem('reservation')) {
+        sessionStorage.removeItem('reservation');
+    }
 </script>
-<script src="<?php echo getAbsoluteUrl('/dist/js/single-pacote.js'); ?>"></script>
+<script src="<?php echo getAbsoluteUrl('/dist/js/reservation.min.js'); ?>"></script>
+<script src="<?php echo getAbsoluteUrl('/dist/js/single-pacote.min.js'); ?>"></script>

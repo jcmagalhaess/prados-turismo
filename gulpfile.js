@@ -1,20 +1,28 @@
 // Importação dos módulos
-const gulp = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-const cleanCSS = require('gulp-clean-css');
-const uglify = require('gulp-uglify');
-const rename = require('gulp-rename');
-const sourcemaps = require('gulp-sourcemaps');
-const browserSync = require('browser-sync').create();
-const { spawn } = require('child_process');
-const replace = require('gulp-replace');
-require('dotenv').config();
+import gulp from 'gulp';
+import sass from 'gulp-sass';
+import dartSass from 'sass';
+import cleanCSS from 'gulp-clean-css';
+import uglify from 'gulp-uglify';
+import rename from 'gulp-rename';
+import sourcemaps from 'gulp-sourcemaps';
+import browserSync from 'browser-sync';
+import { spawn } from 'child_process';
+import replace from 'gulp-replace';
+import filter from 'gulp-filter';
+import { config } from 'dotenv';
+
+// Inicializa o dotenv
+config();
+
+const sassCompiler = sass(dartSass);
+
 
 // Caminhos dos arquivos
 const paths = {
   scss: './assets/scss/**/*.scss',     // Diretório dos arquivos SCSS
   css: './dist/css',                   // Diretório de saída dos arquivos CSS compilados
-  js: './dist/js/**/*.js',           // Diretório dos arquivos JavaScript
+  js: './assets/js/**/*.js',           // Diretório dos arquivos JavaScript
   jsDist: './dist/js',                 // Diretório de saída dos arquivos JS minificados
   layouts: './views/layouts/*.php',    // Todos os arquivos PHP dentro de `views`
   pages: './views/pages/**/*.php'         // Todos os arquivos PHP dentro de `views`
@@ -24,7 +32,7 @@ const paths = {
 gulp.task('scss', function () {
   return gulp.src(paths.scss)
     .pipe(sourcemaps.init()) // Inicia os sourcemaps
-    .pipe(sass().on('error', sass.logError)) // Compila SCSS para CSS
+    .pipe(sassCompiler().on('error', sassCompiler.logError)) // Compila SCSS para CSS
     .pipe(cleanCSS()) // Minifica o CSS
     .pipe(rename({ suffix: '.min' })) // Renomeia para .min.css
     .pipe(sourcemaps.write('./')) // Escreve o arquivo de sourcemaps
@@ -42,10 +50,14 @@ gulp.task('inject-env', function () {
 
 // Task: Minificar arquivos JavaScript
 gulp.task('minify-js', function () {
+  // Filtro para aceitar apenas arquivos .min.js
+  const minifiedFilter = filter(['**/*.min.js'], { restore: true });
+
   return gulp.src(paths.js)
     .pipe(sourcemaps.init()) // Inicia os sourcemaps
     .pipe(uglify()) // Minifica o JS
     .pipe(rename({ suffix: '.min' })) // Renomeia para .min.js
+    .pipe(minifiedFilter) // Passa apenas os arquivos .min.js
     .pipe(sourcemaps.write('./')) // Escreve o arquivo de sourcemaps
     .pipe(gulp.dest(paths.jsDist)) // Salva o JS minificado
     .pipe(browserSync.stream()); // Atualiza o navegador

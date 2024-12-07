@@ -136,3 +136,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    if (sessionStorage.getItem('reservation')) {
+        const reservation = JSON.parse(sessionStorage.getItem('reservation'));
+        const { period, people, price } = reservation;
+
+        console.log(people);
+        
+    }
+</script>

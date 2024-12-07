@@ -386,4 +386,4 @@
     </div>
 </main>
 
-<script src="<?php echo getAbsoluteUrl('/dist/js/checkout.js'); ?>"></script>
+<script src="<?php echo getAbsoluteUrl('/dist/js/checkout.min.js'); ?>"></script>

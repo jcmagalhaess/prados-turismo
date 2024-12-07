@@ -1,18 +1,18 @@
-// const urlApi = '__URL_API__';
-const urlApi = 'http://localhost:8000';
+// const urlApi = 'http://localhost:8000';
+const urlApi = 'https://78eb-189-106-167-112.ngrok-free.app';
 
 export async function auth() {
 
   const { data } = await axios.post(`${urlApi}/usuarios/auth`,
     {
-      // username: '__DEFAULT_USER__',
-      // password: '__DEFAULT_PASSWORD__'
+      // username: 'PradosAdmin',
+      // password: '1234'
       username: 'PradosAdmin',
       password: '1234'
     }
   )
 
-  document.cookie = `token=${data.token}`
+  localStorage.setItem('token', data.token)
 }
 
 export function getCookie(name) {
@@ -39,9 +39,12 @@ export async function findExcursion(id) {
 
 export async function findAllExcursions() {
 
-  const { data } = await axios.get(`${urlApi}/excursao/findAll`, {
+  const { data } = await axios.get(`${urlApi}/excursao/index`, {
     headers: {
       'Authorization': token
+    },
+    params: {
+      publicado: 1
     }
   })
 
@@ -62,9 +65,12 @@ export async function findDestinyByOrigin(origin) {
   return data
 }
 
-export async function login() {
+export async function login(username, password) {
 
-  const { data } = await axios.get(`${urlApi}/usuarios/login`)
+  const { data } = await axios.post(`${urlApi}/usuarios/login-user-client`, {
+    username,
+    password
+  })
 
   return data
 }
@@ -104,4 +110,19 @@ export async function customerCredit(id) {
 
 export async function cart(customerId) {
 
+}
+
+export async function registerClient(username) {
+
+  const data = await axios.post(`${urlApi}/usuarios/register-user-client`,
+    { email: username },
+    {
+      headers: {
+        'Authorization': token
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+
+  return data
 }
