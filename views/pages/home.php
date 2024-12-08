@@ -1,3 +1,13 @@
+
+<script type="module">
+    import { buscarPacotes } from './dist/js/home.repository.min.js';
+
+    let excursoes = [];
+    
+    await buscarPacotes(3).then((response) => {
+        excursoes = response;
+    });
+</script>
 <main class="home">
     <section class="home__banner"></section>
     <section class="home__features">
@@ -28,41 +38,18 @@
             <h3 class="home__title">Nossos Pacotes</h3>
             <div class="row">
                 <?php
-                    $pacotes = [
-                        1 => [
-                            'id' => 1,
-                            'nome' => 'Pacote para Fortaleza',
-                            'descricao' => 'Uma viagem incrível para Fortaleza.',
-                            'preco' => 'R$ 1500,00',
-                            'duracao' => '7 dias e 6 noites',
-                            'imagem' => '/assets/images/rj.png',
-                            'category' => 'Fortaleza'
-                        ],
-                        2 => [
-                            'id' => 2,
-                            'nome' => 'Pacote para Salvador',
-                            'descricao' => 'Explore as maravilhas de Salvador.',
-                            'preco' => 'R$ 1800,00',
-                            'duracao' => '5 dias e 4 noites',
-                            'imagem' => '/assets/images/rj.png',
-                            'category' => 'Fortaleza'
+                    include "./views/api/excursoes.repository.php";
 
-                        ],
-                        3 => [
-                            'id' => 3,
-                            'nome' => 'Pacote para Salvador',
-                            'descricao' => 'Explore as maravilhas de Salvador.',
-                            'preco' => 'R$ 1800,00',
-                            'duracao' => '5 dias e 4 noites',
-                            'imagem' => '/assets/images/rj.png',
-                            'category' => 'Fortaleza'
-                        ]
-                        // Adicione mais pacotes conforme necessário
-                    ];
-                    
-                    foreach ($pacotes as $key => $value) {
-                      include "./views/layouts/pacote-card.php";  
-                    };
+                    $excursoesJson = file_get_contents('./views/api/excursoes.json');
+                    $excursoes = json_decode($excursoesJson, true);
+
+                    if (!empty($excursoes)) {
+                        foreach ($excursoes as $key => $value) {
+                            include "./views/layouts/pacote-card.php";  
+                        };
+                    } else {
+                        echo "<p>Nenhum pacote encontrado.</p>";
+                    }
                 ?>
             </div>
         </div>

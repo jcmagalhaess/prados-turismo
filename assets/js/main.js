@@ -1,12 +1,9 @@
-// const urlApi = 'http://localhost:8000';
-const urlApi = 'https://78eb-189-106-167-112.ngrok-free.app';
+const urlApi = 'http://localhost:8000';
 
 export async function auth() {
 
   const { data } = await axios.post(`${urlApi}/usuarios/auth`,
     {
-      // username: 'PradosAdmin',
-      // password: '1234'
       username: 'PradosAdmin',
       password: '1234'
     }
