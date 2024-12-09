@@ -1,0 +1,46 @@
+{
+    "id": "0339f8fe-fb8c-4aa9-a6e1-510893e031ee",
+    "nome": "Pacote para Natal, Pipa e Perobas",
+    "dataInicio": "2024-12-20T00:00:00.000Z",
+    "dataFim": "2024-12-22T00:00:00.000Z",
+    "observacoes": "Transporte terrestre de ida e volta saindo de Fortaleza-CE;\nAcomoda\u00e7\u00e3o bem localizada com caf\u00e9 da manh\u00e3;\nPasseio para Praia de Perobas;\nPasseio para Pipa;\nSuporte presencial completo de um representante da Prados Turismo durante toda a viagem;\nGrupo exclusivo no WhatsApp para orienta\u00e7\u00f5es e dicas durante a viagem;",
+    "dataCadastro": "2024-12-08T15:15:41.144Z",
+    "ativo": true,
+    "gerouFinanceiro": false,
+    "vagas": 200,
+    "codigoPacote": "956463d9-c124-4bf7-aac3-ee3b16accf65",
+    "usuarioCadastro": "4dad0d9f-f862-48e9-86fe-1dbdb430dba0",
+    "valor": 330,
+    "qtdMinVendas": 1,
+    "ExcursaoPassageiros": [],
+    "Pacotes": {
+        "id": "956463d9-c124-4bf7-aac3-ee3b16accf65",
+        "nome": "Natal, Rio Grande do Norte, Brasil",
+        "descricao": "Natal, Rio Grande do Norte, Brasil",
+        "ativo": true,
+        "dataCadastro": "2024-12-08T14:59:57.590Z",
+        "origem": 1,
+        "tipoTransporte": 1,
+        "idWP": null,
+        "categoria": null,
+        "urlImagem": null,
+        "urlImgEsgotado": null,
+        "usuarioCadastro": "4dad0d9f-f862-48e9-86fe-1dbdb430dba0",
+        "Produto": [],
+        "category": "Fortaleza"
+    },
+    "LocalEmbarque": [
+        {
+            "id": "20b8b6b4-1721-49cd-81c7-ba64505c8811",
+            "nome": "North Shopping",
+            "observacoes": "",
+            "horaEmbarque": "06:00",
+            "dataCadastro": "2024-12-08T14:57:18.805Z",
+            "ativo": true,
+            "codigoEndereco": "4c4343ca-d8d7-42df-95b0-1ca50125a623",
+            "usuarioCadastro": "4dad0d9f-f862-48e9-86fe-1dbdb430dba0"
+        }
+    ],
+    "duracao": "3 dias e 2 noites",
+    "valorFormatado": "R$\u00a0330,00"
+}

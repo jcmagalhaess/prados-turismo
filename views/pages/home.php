@@ -1,12 +1,10 @@
 
 <script type="module">
-    import { buscarPacotes } from './dist/js/home.repository.min.js';
+    import { buscarPacotes } from './dist/js/excursoes.repository.min.js';
 
     let excursoes = [];
     
-    await buscarPacotes(3).then((response) => {
-        excursoes = response;
-    });
+    await buscarPacotes(3);
 </script>
 <main class="home">
     <section class="home__banner"></section>
@@ -38,8 +36,6 @@
             <h3 class="home__title">Nossos Pacotes</h3>
             <div class="row">
                 <?php
-                    include "./views/api/excursoes.repository.php";
-
                     $excursoesJson = file_get_contents('./views/api/excursoes.json');
                     $excursoes = json_decode($excursoesJson, true);
 

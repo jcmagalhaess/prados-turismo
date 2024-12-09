@@ -1,25 +1,16 @@
-
 <?php
-    // single-event.php
+    $id = isset($_GET['id']) ? $_GET['id'] : null;
 
-    // Inclui o arquivo com os dados dos pacotes
-    include 'pacotes.php';
-
-    // Obtém o ID do pacote da URL (exemplo: single-event.php?id=1)
-    $pacoteId = $_GET['id'] ?? null;
-    $pacote = getPacoteData($pacoteId);
-
-    if (!$pacote) {
-        echo "Pacote não encontrado.";
-        exit;
-    }
+    $excursoesDetalhesJson = file_get_contents('./views/api/excursoes-detalhes.json');
+    $excursoesDetalhes = json_decode($excursoesDetalhesJson, true);
 
    $enumCategories = [
-        ['key' => 'adults', 'value' => 'Adultos', 'age' => '+12 anos', 'price' => 490],
-        ['key' => 'children', 'value' => 'Crianças', 'age' => '6 a 12 anos', 'price' => 490],
+        ['key' => 'adults', 'value' => 'Adultos', 'age' => '+12 anos', 'price' => $excursoesDetalhes['valor']],
+        ['key' => 'children', 'value' => 'Crianças', 'age' => '6 a 12 anos', 'price' => $excursoesDetalhes['valor']],
         ['key' => 'babies', 'value' => 'Crianças de Colo', 'age' => '0 a 5 anos', 'price' => 0]
     ];
 ?>
+<div id="excursao-loading">Carregando...</div>
 
 <main>
     <div class="container">
@@ -33,38 +24,26 @@
             <div class="event__main">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="display-6">Pacote RÉVEILLON na Serra da Ibiapaba (Tianguá, Viçosa e Ubajara)</h2>
-                        <span class="event__price">R$ 490,00 / por pessoa</span>
-                        <p>Vem aproveitar o clima friozinho da Serra conosco nesta excursão com nosso roteiro exclusivo e perfeito! Perfeito porque ficamos hospedados na cidade mais animada da Serra, oferecendo diversas opções para curtir a vida noturna, e o melhor, em um hotel com uma estrutura fantástica e próximo dos principais pontos da cidade! Além disso, é perfeito porque planejamos o roteiro para evitar lotações. Escolhemos visitar o Sítio do Bosco, Ubajara e Viçosa nos dias menos movimentados, proporcionando uma experiência mais tranquila. Assim, você terá a oportunidade de aproveitar esses locais com mais calma. É perfeito também porque você não precisa se preocupar com nada, todos os passeios estão inclusos, inclusive as entradas. E, por fim, é perfeito porque o ingresso do Bondinho para visitar a Gruta de Ubajara está gratuito. Vem conhecer as belezas desse lugar perfeito em um pacote que foi cuidadosamente planejado para ser perfeito!</p>
+                        <h2 class="display-6" id="event-title"></h2>
+                        <span class="event__price" id="event-price"></span>
+                        <p id="event-description"></p>
                         <table class="event__table table">
                             <tbody>
                                 <tr>
                                     <th scope="row">Destino</th>
-                                    <td>Serra da Ibiapaba</td>
+                                    <td id="event-destination"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Partida</th>
-                                    <td>Tolerancia de 10 minutos a partir do horario escolhido</td>
+                                    <td id="event-departure">Tolerancia de 10 minutos a partir do horario escolhido</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Incluso</th>
-                                    <td>
-                                        <ul class="d-flex flex-wrap">
-                                            <li><i class="fa-solid fa-check text-success me-3"></i>Transporte terrestre de ida e volta saindo de Fortaleza-CE</li>
-                                            <li><i class="fa-solid fa-check text-success me-3"></i>Acomodação bem localizada com café da manhã</li>
-                                            <li><i class="fa-solid fa-check text-success me-3"></i>Passeio pelo Sitio do Bosco (Tianguá) com entrada inclusa</li>
-                                            <li><i class="fa-solid fa-check text-success me-3"></i>Passeio para o Parque Nacional de Ubajara</li>
-                                            <li><i class="fa-solid fa-check text-success me-3"></i>Passeio para Casa dos Licores com degustação de licor, doces, geleias e biscoitos inclusa</li>
-                                            <li><i class="fa-solid fa-check text-success me-3"></i>Passeio pela Igreja do Céu (Viçosa)</li>
-                                            <li><i class="fa-solid fa-check text-success me-3"></i>Passeio para Prainha do Jet com entrada inclusa</li>
-                                            <li><i class="fa-solid fa-check text-success me-3"></i>Suporte presencial completo de um representante da Prados Turismo durante toda a viagem</li>
-                                            <li><i class="fa-solid fa-check text-success me-3"></i>Grupo exclusivo no WhatsApp para orientações e dicas durante a viagem</li>
-                                        </ul>
-                                    </td>
+                                    <td id="event-included"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Não incluso</th>
-                                    <td>
+                                    <td id="event-not-included">
                                         <ul class="d-flex flex-wrap">
                                             <li>
                                                 <!-- <i class="fa-solid fa-xmark text-danger me-3"></i> -->
@@ -151,7 +130,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-primary w-100" id="btn-reservation-now" disabled="true" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick="createReservation(<?php echo 490; ?>)">Reservar agora</button>
+                            <button type="button" class="btn btn-primary w-100" id="btn-reservation-now" disabled="true" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick="createReservation(<?php echo $excursoesDetalhes['valor']; ?>)">Reservar agora</button>
                         </div>
                     </div>
                 </form>
@@ -184,16 +163,21 @@
     </div>
 </main>
 
-<script>
+<script type="module">
+    import { buscarPacoteById } from './dist/js/excursoes.repository.min.js';
+
     let enumCategories = [
-        { key: "adults", value: "Adultos", price: <?php echo 490; ?> },
-        { key: "children", value: "Crianças", price: <?php echo 490; ?> },
+        { key: "adults", value: "Adultos", price: <?php echo $excursoesDetalhes['valor']; ?> },
+        { key: "children", value: "Crianças", price: <?php echo $excursoesDetalhes['valor']; ?> },
         { key: "babies", value: "Crianças de Colo", price: <?php echo 0; ?> },
     ];
 
     if (sessionStorage.getItem('reservation')) {
         sessionStorage.removeItem('reservation');
     }
+    
+    // await buscarPacoteById(<?php echo json_encode($id); ?>);
+    document.addEventListener('DOMContentLoaded', buscarPacoteById(<?php echo json_encode($id); ?>));
 </script>
 <script src="<?php echo getAbsoluteUrl('/dist/js/reservation.min.js'); ?>"></script>
 <script src="<?php echo getAbsoluteUrl('/dist/js/single-pacote.min.js'); ?>"></script>
