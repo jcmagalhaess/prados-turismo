@@ -60,18 +60,13 @@
                     <h5 class="display-6">Nossa galeria</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae condimentum egestas, libero dolor auctor tellus, eu consectetur neque elit quis nunc. Cras elementum pretium est.</p>
                     <ul class="event__gallery">
-                        <li class="event__item">
-                            <img src="<?php echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
-                        </li>
-                        <li class="event__item">
-                            <img src="<?php echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
-                        </li>
-                        <li class="event__item">
-                            <img src="<?php echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
-                        </li>
-                        <li class="event__item">
-                            <img src="<?php echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
-                        </li>
+                        <?php for ($i=0; $i < 5; $i++) : ?>
+                            <li class="event__item">
+                                <a href="<?php echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" data-lightbox="roadtrip" data-title="My caption">
+                                    <img src="<?php echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
+                                </a>
+                            </li>
+                        <?php endfor; ?>
                     </ul>
                 </div>
             </div>

@@ -54,6 +54,19 @@
                 </div>
             </div>
         </footer>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-cycle-2@1.0.3/src/jquery.cycle.all.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/js/lightbox.min.js" integrity="sha512-KbRFbjA5bwNan6DvPl1ODUolvTTZ/vckssnFhka5cG80JVa5zSlRPCr055xSgU/q6oMIGhZWLhcbgIC0fyw3RQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.banner').cycle({
+                    fx: 'fade', // Tipo de animação (fade, scrollHorz, etc.)
+                    speed: 1000, // Velocidade da transição
+                    timeout: 3000, // Tempo de exibição de cada slide
+                    slides: '> .banner__image'
+                });
+            });
+        </script>
     </body>
 </html>

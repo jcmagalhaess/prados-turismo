@@ -7,7 +7,8 @@
     await buscarPacotes(3);
 </script>
 <main class="home">
-    <section class="home__banner"></section>
+    <?php include "./views/layouts/banner.php"; ?>
+
     <section class="home__features">
         <div class="container">
             <div class="home__list">
