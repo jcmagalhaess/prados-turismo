@@ -27,6 +27,42 @@
         "urlImgEsgotado": null,
         "usuarioCadastro": "4dad0d9f-f862-48e9-86fe-1dbdb430dba0",
         "Produto": [],
+        "Galeria": [
+            {
+                "id": "1eb636cb-ee33-497c-9ee8-f8745a436e11",
+                "nome": "rj.png",
+                "url": "http:\/\/localhost:8000\/images\/rj.png",
+                "dataUpload": "2024-12-07T18:06:00.717Z",
+                "userId": "4dad0d9f-f862-48e9-86fe-1dbdb430dba0",
+                "pacotesId": "956463d9-c124-4bf7-aac3-ee3b16accf65"
+            },
+            {
+                "id": "fdf81498-d058-4fa0-ad41-18759ffc26d5",
+                "nome": "tiangu\u00e1.png",
+                "url": "http:\/\/localhost:8000\/images\/tiangu\u00e1.png",
+                "dataUpload": "2024-12-08T15:14:26.933Z",
+                "userId": "4dad0d9f-f862-48e9-86fe-1dbdb430dba0",
+                "pacotesId": "956463d9-c124-4bf7-aac3-ee3b16accf65"
+            },
+            {
+                "id": "6328bc70-b1fe-418a-96ed-5ad640473ad1",
+                "nome": "amontada.png",
+                "url": "http:\/\/localhost:8000\/images\/amontada.png",
+                "dataUpload": "2024-12-08T15:14:32.037Z",
+                "userId": "4dad0d9f-f862-48e9-86fe-1dbdb430dba0",
+                "pacotesId": "956463d9-c124-4bf7-aac3-ee3b16accf65"
+            },
+            {
+                "id": "99b47aa8-5043-4652-a440-fbf95ca9785d",
+                "nome": "natal.png",
+                "url": "http:\/\/localhost:8000\/images\/natal.png",
+                "dataUpload": "2024-12-08T15:14:39.069Z",
+                "userId": "4dad0d9f-f862-48e9-86fe-1dbdb430dba0",
+                "pacotesId": "956463d9-c124-4bf7-aac3-ee3b16accf65"
+            }
+        ],
+        "Imagem": null,
+        "ImagemBloqueado": null,
         "category": "Fortaleza"
     },
     "LocalEmbarque": [

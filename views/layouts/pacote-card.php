@@ -9,8 +9,8 @@
                 </span>
             </figure>
             <span class="card-event__category"><?php echo $value['Pacotes']['category']; ?></span>
-            <h2 class="card-event__title"><?php echo $value['nome']; ?></h2>
-            <p class="card-event__resume"><?php echo $value['descricao']; ?></p>
+            <h2 class="card-event__title" title="<?php echo $value['nome']; ?>"><?php echo $value['nome']; ?></h2>
+            <p class="card-event__resume"><?php echo $value['observacoes']; ?></p>
         </div>
         <div class="card-event__actions">
             <span class="card-event__price"><?php echo $value['valorFormatado']; ?></span>

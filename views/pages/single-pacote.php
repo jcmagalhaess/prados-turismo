@@ -12,7 +12,7 @@
 ?>
 <div id="excursao-loading">Carregando...</div>
 
-<main>
+<main id="excursao-loaded">
     <div class="container">
         <div class="d-flex mb-3">
             <button type="button" class="btn btn-secondary me-3"><i class="fa-solid fa-arrow-left-long me-2"></i>Voltar</button>
@@ -56,18 +56,10 @@
                         </table>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="event-gallery">
                     <h5 class="display-6">Nossa galeria</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae condimentum egestas, libero dolor auctor tellus, eu consectetur neque elit quis nunc. Cras elementum pretium est.</p>
-                    <ul class="event__gallery">
-                        <?php for ($i=0; $i < 5; $i++) : ?>
-                            <li class="event__item">
-                                <a href="<?php echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" data-lightbox="roadtrip" data-title="My caption">
-                                    <img src="<?php echo getAbsoluteUrl('/assets/images/banner.jpg'); ?>" alt="Avatar">
-                                </a>
-                            </li>
-                        <?php endfor; ?>
-                    </ul>
+                    <p id="event-gallery-description"></p>
+                    <ul class="event__gallery" id="event-gallery-list"></ul>
                 </div>
             </div>
             <div class="event__sidebar">
@@ -76,8 +68,7 @@
                         <div class="col-md-12">
                             <label for="period"><i class="fa-regular fa-clock me-3 mb-3"></i>Selecione o período</label>
                             <select class="form-select" id="period-event" required name="period" aria-label="Default select example">
-                                <option value="null"></option>
-                                <option value="30/12/2024 a 01/01/2025">30/12/2024 a 01/01/2025</option>
+                                <option value=""></option>
                             </select>
                         </div>
                     </div>
@@ -166,6 +157,8 @@
         { key: "children", value: "Crianças", price: <?php echo $excursoesDetalhes['valor']; ?> },
         { key: "babies", value: "Crianças de Colo", price: <?php echo 0; ?> },
     ];
+
+    sessionStorage.setItem('enumCategories', JSON.stringify(enumCategories));
 
     if (sessionStorage.getItem('reservation')) {
         sessionStorage.removeItem('reservation');

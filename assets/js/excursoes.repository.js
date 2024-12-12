@@ -30,7 +30,7 @@ export async function buscarPacoteById(id) {
         // Atualizar o DOM se os dados forem válidos
         if (data) {
             await atualizarDom(data); // Atualiza o DOM com os dados recebidos
-            await enviarDadosParaPHP(data, id); // Envia os dados para o PHP
+            await enviarDadosParaPHP(data, id);
         }
     } catch (error) {
         console.error('Erro ao buscar pacote:', error);
@@ -50,6 +50,37 @@ async function atualizarDom(data) {
     document.getElementById('event-description').innerText = formatandoDescricao(excursao.observacoes);
     document.getElementById('event-destination').innerText = excursao.Pacotes.nome;
     document.getElementById('event-included').innerHTML = formatandoItensInclusos(excursao.observacoes);
+
+    if (excursao.Pacotes.Galeria.length === 0) {
+        document.getElementById('event-gallery').style.display = 'none';
+    } else {
+        document.getElementById('event-gallery').style.display = 'block';
+    }
+
+    document.getElementById('event-gallery-description').innerHTML = excursao.Pacotes.descricao;
+
+    excursao.Pacotes.Galeria.forEach(item => {
+        document.getElementById('event-gallery-list').innerHTML += `
+            <li class="event__item" style="background-image: url(${ item.url })">
+                <a href="${ item.url }" data-lightbox="roadtrip" data-title="${ item.nome }"></a>
+            </li>`;
+    });
+
+    const dataInicio = new Date(excursao.dataInicio);
+    const dataFim = new Date(excursao.dataFim);
+
+    formatarData(dataInicio);
+    formatarData(dataFim);
+    
+    document.getElementById('period-event').innerHTML += `<option value="${ formatarData(dataInicio) } a ${ formatarData(dataFim) }">${ formatarData(dataInicio) } a ${ formatarData(dataFim) }</option>`
+}
+
+function formatarData(data) {
+    const dia = data.getDate().toString().padStart(2, '0');
+    const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+    const ano = data.getFullYear();
+
+    return `${dia}/${mes}/${ano}`;
 }
 
 async function enviarDadosParaPHP(data, id) {

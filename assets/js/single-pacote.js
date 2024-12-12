@@ -2,6 +2,7 @@ let labels = [];
 let categories = ['adults', 'children', 'babies'];
 let ticketsCount = 0;
 let validateForm = false;
+let enumCategories = sessionStorage.getItem('enumCategories') ? JSON.parse(sessionStorage.getItem('enumCategories')) : [];
 
 // localStorage.removeItem('ticketsCount');
 
@@ -76,16 +77,16 @@ function updateTotalizers() {
     document.getElementById('subtotal-label').innerHTML = `<strong>Subtotal: </strong> R$ ${subtotal.toFixed(2)}`;
     document.getElementById('payment-label').innerHTML = `<span class="text-success">Pagando à vista: R$ ${payment.toFixed(2)}</span>`;
 
-    updateTicketsAmount();
+    // validateReservationButton();
 }
 
-function updateTicketsAmount() {
-    document.getElementById('tickets-count').textContent = ticketsCount > 0 ? ticketsCount : 0;
-    document.getElementById('btn-reservation-now').disabled = ticketsCount !== 0 && validateForm ? false : true;
+// function updateTicketsAmount() {
+//     document.getElementById('tickets-count').textContent = ticketsCount > 0 ? ticketsCount : 0;
+//     document.getElementById('btn-reservation-now').disabled = ticketsCount !== 0 && validateForm ? false : true;
 
-    participantesForm(ticketsCount);
-    pricesComponent();
-}
+//     participantesForm(ticketsCount);
+//     pricesComponent();
+// }
 
 function participantesForm(amount) {
     const original = document.getElementById('accordion-item-1');
